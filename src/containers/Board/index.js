@@ -1,10 +1,13 @@
 import React from 'react';
+import TitleBar from 'components/TitleBar';
 
 class Board extends React.Component {
+  state = { retroTitle: 'Test Board name' };
+
   render() {
     return (
       <div>
-        <h1>Hello World! ^_^</h1>
+        <TitleBar title={this.state.retroTitle} />
       </div>
     );
   }

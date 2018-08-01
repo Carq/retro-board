@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './containers/Header';
-import Board from './containers/Board';
+import Header from 'containers/Header';
+import Board from 'containers/Board';
 import './styles.css';
 import styled from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faEdit);
 
 const AppWrapper = styled.div`
   display: flex;

@@ -1,13 +1,14 @@
-import H1 from 'components/H1';
 import React from 'react';
+import H1Header from './H1Header';
 import ImgHeader from './ImgHeader';
-import logoIcon from 'icons/retro_clock.png';
+import logoIcon from 'images/logo.png';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   align-items: center;
-  height: 50px;
-  background: #e4e4e4;
+  height: 70px;
+  color: #dfefff;
+  background: #102000;
   display: flex;
 `;
 
@@ -16,7 +17,7 @@ class Header extends React.Component {
     return (
       <HeaderWrapper>
         <ImgHeader src={logoIcon} alt="logo" />
-        <H1>Retro Board</H1>
+        <H1Header>Retro Board</H1Header>
       </HeaderWrapper>
     );
   }
