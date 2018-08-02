@@ -1,6 +1,16 @@
+import EditableText from 'containers/EditableText';
 import React from 'react';
-import TitleBar from 'components/TitleBar';
-import EditableTitleBar from 'components/EditableTitleBar';
+import styled from 'styled-components';
+
+const BoardDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const BoardChildDiv = styled.div`
+  margin: 0 auto;
+`;
 
 class Board extends React.Component {
   state = {
@@ -21,30 +31,17 @@ class Board extends React.Component {
     });
   };
 
-  renderTitleBar() {
-    return (
-      <TitleBar
-        title={this.state.retroTitle}
-        onClick={this.handleTitleBarOnClick}
-      />
-    );
-  }
-
-  renderEditableTitleBar() {
-    return (
-      <EditableTitleBar
-        title={this.state.retroTitle}
-        onTitleConfim={this.handleTitleConfirm}
-      />
-    );
-  }
-
   render() {
-    let titleBar = this.state.isEditingTitle
-      ? this.renderEditableTitleBar()
-      : this.renderTitleBar();
-
-    return <div>{titleBar}</div>;
+    return (
+      <BoardDiv>
+        <BoardChildDiv>
+          <EditableText large text="" placeholder="No title" />
+        </BoardChildDiv>
+        <BoardChildDiv>
+          <EditableText text="" placeholder="No desciption" />
+        </BoardChildDiv>
+      </BoardDiv>
+    );
   }
 }
 
