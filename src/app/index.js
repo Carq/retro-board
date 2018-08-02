@@ -5,9 +5,9 @@ import Board from 'containers/Board';
 import './styles.css';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faEdit);
+library.add(faEdit, faCheck);
 
 const AppWrapper = styled.div`
   display: flex;
