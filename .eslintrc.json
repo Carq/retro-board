@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["prettier", "prettier/react"],
+  "rules": {
+    "semi": 0,
+    "space-before-function-paren": "off",
+    "no-console": "warn"
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react"]
+}
