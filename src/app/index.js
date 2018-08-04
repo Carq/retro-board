@@ -5,25 +5,27 @@ import Board from 'containers/Board';
 import './styles.css';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faCheck,
+  faPlusCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faEdit, faCheck);
+library.add(faEdit, faCheck, faPlusCircle);
 
 const AppWrapper = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100%;
   flex-direction: column;
   font-family: monospace;
+  min-height: 100%;
+  width: 100%;
 `;
 
 const ContentWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
   display: flex;
-  min-height: 100%;
-  padding: 0 16px;
   flex-direction: column;
+  min-height: 100%;
+  min-width: 100%;
 `;
 
 class App extends React.Component {

@@ -1,46 +1,26 @@
-import EditableText from 'containers/EditableText';
+import Column from 'containers/Column';
+import Header from './BoardHeader';
 import React from 'react';
 import styled from 'styled-components';
 
-const BoardDiv = styled.div`
+const ColumnsContainer = styled.div`
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const BoardChildDiv = styled.div`
-  margin: 0 auto;
+  flex-direction: row;
+  padding: 0 10px;
+  justify-content: space-evenly;
 `;
 
 class Board extends React.Component {
-  state = {
-    retroTitle: 'Test Board name',
-    isEditingTitle: null,
-  };
-
-  handleTitleConfirm = title => {
-    this.setState({
-      retroTitle: title,
-      isEditingTitle: false,
-    });
-  };
-
-  handleTitleBarOnClick = () => {
-    this.setState({
-      isEditingTitle: true,
-    });
-  };
-
   render() {
     return (
-      <BoardDiv>
-        <BoardChildDiv>
-          <EditableText large text="" placeholder="No title" />
-        </BoardChildDiv>
-        <BoardChildDiv>
-          <EditableText text="" placeholder="No desciption" />
-        </BoardChildDiv>
-      </BoardDiv>
+      <div>
+        <Header />
+        <ColumnsContainer>
+          <Column title="Went well" />
+          <Column title="Was bad" />
+          <Column title="Improvments" />
+        </ColumnsContainer>
+      </div>
     );
   }
 }

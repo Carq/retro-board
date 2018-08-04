@@ -10,7 +10,7 @@ const FontIconDiv = styled.div`
   :hover {
     color: #1e87bf;
   }
-  margin: ${props => props.margin + 'px'};
+  margin: 4px ${props => props.margin + 'px'};
 `;
 
 class FontIcon extends React.Component {
@@ -25,7 +25,7 @@ class FontIcon extends React.Component {
       <FontIconDiv margin={this.props.margin} onClick={this.handleClick}>
         <FontAwesomeIcon
           icon={this.props.icon}
-          size={this.props.large && 'lg'}
+          size={(this.props.large && 'lg') || (this.props.small && 'sm')}
         />
       </FontIconDiv>
     );
@@ -35,6 +35,7 @@ class FontIcon extends React.Component {
 FontIcon.propTypes = {
   margin: PropTypes.string,
   large: PropTypes.bool,
+  small: PropTypes.bool,
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func,
 };

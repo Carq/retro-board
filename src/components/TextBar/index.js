@@ -9,7 +9,7 @@ const TextBarDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
-  color: ${props => (props.greyOut ? '#8b8b8b' : '#000')};
+  color: ${props => props.greyOut && '#8b8b8b'};
 `;
 
 class TextBar extends React.Component {
@@ -19,16 +19,21 @@ class TextBar extends React.Component {
         <TextDiv greyOut={!this.props.text}>
           {this.props.text || this.props.placeholder}
         </TextDiv>
-        <FontIcon icon="edit" large onClick={this.props.onClick} />
+        <FontIcon
+          icon="edit"
+          large={!this.props.smallIcon}
+          onClick={this.props.onClick}
+        />
       </TextBarDiv>
     );
   }
 }
 
 TextBar.propTypes = {
-  text: PropTypes.string,
-  placeholder: PropTypes.string,
   onClick: PropTypes.func,
+  placeholder: PropTypes.string,
+  smallIcon: PropTypes.bool,
+  text: PropTypes.string,
 };
 
 export default TextBar;

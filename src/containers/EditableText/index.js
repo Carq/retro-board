@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const EditableTextDiv = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${props => (props.large === true ? '32px' : '22px')};
+  font-size: ${props => (props.large === true ? '28px' : '18px')};
 `;
 
 class EditableText extends React.Component {
@@ -40,6 +40,7 @@ class EditableText extends React.Component {
       <EditableTextDiv large={this.props.large}>
         <TextBar
           text={this.state.text}
+          smallIcon={this.props.smallIcon}
           placeholder={this.props.placeholder}
           onClick={this.onTextBarClick}
         />
@@ -55,7 +56,11 @@ class EditableText extends React.Component {
           value={this.state.text}
           onChange={this.onTextChange}
         />
-        <FontIcon large icon="check" onClick={this.onTextConfirm} />
+        <FontIcon
+          small={this.props.smallIcon}
+          icon="check"
+          onClick={this.onTextConfirm}
+        />
       </EditableTextDiv>
     );
   }
@@ -68,10 +73,11 @@ class EditableText extends React.Component {
 }
 
 EditableText.propTypes = {
-  text: PropTypes.string,
-  placeholder: PropTypes.string,
-  onTextConfim: PropTypes.func,
   large: PropTypes.bool,
+  onTextConfim: PropTypes.func,
+  placeholder: PropTypes.string,
+  smallIcon: PropTypes.bool,
+  text: PropTypes.string,
 };
 
 export default EditableText;
