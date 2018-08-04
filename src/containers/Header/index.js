@@ -14,10 +14,11 @@ const HeaderWrapper = styled.div`
 
 class Header extends React.Component {
   render() {
+
     return (
       <HeaderWrapper>
         <ImgHeader src={logoIcon} alt="logo" />
-        <H1Header>Retro Board</H1Header>
+          <H1Header>Retro Board</H1Header>
       </HeaderWrapper>
     );
   }
