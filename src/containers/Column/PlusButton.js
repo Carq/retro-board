@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const PlusButtonDiv = styled.button`
   align-content: center;
@@ -15,9 +16,7 @@ const PlusButtonDiv = styled.button`
   :hover {
     background-color: #3cff6c;
   }
-  :active {
-    background-color: #00ec00;
-  }
+
   :focus {
     outline: 0;
   }
@@ -26,11 +25,15 @@ const PlusButtonDiv = styled.button`
 class PlusButton extends React.Component {
   render() {
     return (
-      <PlusButtonDiv>
+      <PlusButtonDiv onClick={this.props.onClick}>
         <FontAwesomeIcon size="lg" icon="plus-circle" />
       </PlusButtonDiv>
     );
   }
 }
+
+PlusButton.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default PlusButton;
