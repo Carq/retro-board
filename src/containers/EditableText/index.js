@@ -17,6 +17,14 @@ class EditableText extends React.Component {
     isEditing: false,
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.text !== prevProps.text) {
+      this.setState({
+        text: this.props.text,
+      });
+    }
+  }
+
   onTextBarClick = () => {
     this.setState({
       isEditing: true,
@@ -27,6 +35,8 @@ class EditableText extends React.Component {
     this.setState({
       isEditing: false,
     });
+
+    this.props.onTextConfim(this.state.text);
   };
 
   onTextChange = event => {
