@@ -2,7 +2,7 @@ import EditableText from 'containers/EditableText';
 import React from 'react';
 import styled from 'styled-components';
 import config from 'app/config';
-import { stat } from 'fs';
+import io from 'socket.io-client';
 
 const HeaderDiv = styled.div`
   display: flex;
@@ -20,7 +20,33 @@ class BoardHeader extends React.Component {
     description: '',
   };
 
+  socket = io(config.api.URL);
+
   componentDidMount() {
+    this.fetchTitle();
+    this.fetchDescription();
+    this.initializeSocket();
+  }
+
+  handleTitleConfirm = title => {
+    this.socket.emit('setBoardTitle', title);
+  };
+
+  handleDescriptionConfirm = description => {
+    this.socket.emit('setBoardDescription', description);
+  };
+
+  initializeSocket() {
+    this.socket.on('boardTitleChanged', newTitle => {
+      this.setState({ title: newTitle });
+    });
+
+    this.socket.on('boardDesciptionChanged', newDescription => {
+      this.setState({ description: newDescription });
+    });
+  }
+
+  fetchTitle() {
     fetch(config.api.URL + '/api/title', {
       method: 'GET',
       headers: {
@@ -32,7 +58,9 @@ class BoardHeader extends React.Component {
       .then(data => {
         this.setState({ title: data.title });
       });
+  }
 
+  fetchDescription() {
     fetch(config.api.URL + '/api/description', {
       method: 'GET',
       headers: {
@@ -45,14 +73,6 @@ class BoardHeader extends React.Component {
         this.setState({ description: data.description });
       });
   }
-
-  handleTitleConfirm = title => {
-    this.saveTitle(title);
-  };
-
-  handleDescriptionConfirm = description => {
-    this.saveDescription(description);
-  };
 
   saveTitle(title) {
     fetch(config.api.URL + '/api/title', {
@@ -84,14 +104,14 @@ class BoardHeader extends React.Component {
     return (
       <HeaderDiv>
         <HeaderChildDiv>
-          {this.state.title && (
+          {
             <EditableText
               large
               text={this.state.title}
               placeholder="No title"
               onTextConfim={this.handleTitleConfirm}
             />
-          )}
+          }
         </HeaderChildDiv>
         <HeaderChildDiv>
           {this.state.description && (

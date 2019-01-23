@@ -1,7 +1,6 @@
-var express = require('express');
+var app = require('express')();
 var bodyParser = require('body-parser');
-
-var app = express();
+var repository = require('./db/repository');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,4 +19,19 @@ routers(app);
 
 var server = app.listen(3000, function() {
   console.log('Server running on port:', server.address().port);
+});
+
+var io = require('socket.io').listen(server);
+io.on('connection', function(socket) {
+  console.log('a user connected');
+
+  socket.on('setBoardTitle', boardTitle => {
+    repository.setTitle(boardTitle);
+    socket.broadcast.emit('boardTitleChanged', boardTitle);
+  });
+
+  socket.on('setBoardDescription', boardDescription => {
+    repository.setDescription(boardDescription);
+    socket.broadcast.emit('boardDesciptionChanged', boardDescription);
+  });
 });
