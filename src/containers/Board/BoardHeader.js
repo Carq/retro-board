@@ -74,32 +74,6 @@ class BoardHeader extends React.Component {
       });
   }
 
-  saveTitle(title) {
-    fetch(config.api.URL + '/api/title', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: title,
-      }),
-    });
-  }
-
-  saveDescription(description) {
-    fetch(config.api.URL + '/api/description', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        description: description,
-      }),
-    });
-  }
-
   render() {
     return (
       <HeaderDiv>
