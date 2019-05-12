@@ -8,7 +8,7 @@ import Tile from 'containers/Tile';
 const ColumnDiv = styled.div`
   flex: 1;
   min-height: 500px;
-  min-width: 400px;
+  min-width: 200px;
   padding: 5px;
 `;
 
