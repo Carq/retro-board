@@ -22,8 +22,8 @@ var server = app.listen(3000, function() {
 });
 
 var io = require('socket.io').listen(server);
-io.on('connection', function(socket) {
-  console.log('a user connected');
+io.on('connection', socket => {
+  console.log(`New client connected id ${socket.id}`);
 
   socket.on('setBoardTitle', boardTitle => {
     repository.setTitle(boardTitle);
@@ -33,5 +33,10 @@ io.on('connection', function(socket) {
   socket.on('setBoardDescription', boardDescription => {
     repository.setDescription(boardDescription);
     socket.broadcast.emit('boardDesciptionChanged', boardDescription);
+  });
+
+  socket.on('addTile', tileData => {
+    repository.saveTile(tileData);
+    socket.broadcast.emit('tileAdded');
   });
 });

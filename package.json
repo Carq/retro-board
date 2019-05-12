@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "start-home": "webpack-dev-server --mode development --host 192.168.0.66 --port 80",
+    "start-home": "webpack-dev-server --mode development --host 192.168.0.136 --port 80",
     "build": "webpack --mode production",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

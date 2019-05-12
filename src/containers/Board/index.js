@@ -16,9 +16,9 @@ class Board extends React.Component {
       <div>
         <Header />
         <ColumnsContainer>
-          <Column title="Went well" />
-          <Column title="Was bad" />
-          <Column title="Improvments" />
+          <Column columnId={1} title="Went well" />
+          <Column columnId={2} title="Was bad" />
+          <Column columnId={3} title="Improvments" />
         </ColumnsContainer>
       </div>
     );

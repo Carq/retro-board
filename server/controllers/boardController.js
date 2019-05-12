@@ -1,17 +1,15 @@
 var repository = require('../db/repository');
 
 class BoardController {
-  getTitle(req, res) {
-    return repository
-      .getTitle()
-      .then(title => {
-        res.status(200).json({
-          title: title,
-        });
-      })
-      .catch(() => {
-        res.status(500).send();
+  async getTitle(req, res) {
+    try {
+      const title = await repository.getTitle();
+      res.status(200).json({
+        title: title,
       });
+    } catch (e) {
+      res.status(500).send();
+    }
   }
 
   setTitle(req, res) {
@@ -23,17 +21,15 @@ class BoardController {
       .catch(() => res.status(500).send());
   }
 
-  getDescription(req, res) {
-    return repository
-      .getDescription()
-      .then(description => {
-        res.status(200).json({
-          description: description,
-        });
-      })
-      .catch(() => {
-        res.status(500).send();
+  async getDescription(req, res) {
+    try {
+      const description = await repository.getDescription();
+      res.status(200).json({
+        description: description,
       });
+    } catch (e) {
+      res.status(500).send();
+    }
   }
 
   setDescription(req, res) {

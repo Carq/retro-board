@@ -14,9 +14,19 @@ const TileDiv = styled.div`
 
 class Tile extends React.Component {
   state = {
-    description: '',
-    isEditing: true,
+    id: this.props.tileData.id || 0,
+    name: this.props.tileData.name || '',
+    isEditing: this.props.tileData.isEditing,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.tileData !== this.props.tileData) {
+      this.setState({
+        id: this.props.tileData.id,
+        name: this.props.tileData.name,
+      });
+    }
+  }
 
   onClick = () => {
     this.setState({
@@ -26,23 +36,32 @@ class Tile extends React.Component {
 
   onChange = event => {
     this.setState({
-      description: event.target.value,
+      name: event.target.value,
+      isEditing: this.state.isEditing,
     });
   };
 
   onLostFocus = () => {
-    this.setState({
-      isEditing: false,
-    });
+    this.finishEditing();
   };
 
   onKeyUp = event => {
     event.preventDefault();
     if (event.keyCode === 13) {
-      this.setState({
-        isEditing: false,
-      });
+      this.finishEditing();
     }
+  };
+
+  finishEditing = () => {
+    this.setState({
+      isEditing: false,
+    });
+
+    this.props.onEditionCompleted({
+      id: this.props.tileData.id,
+      name: this.state.name,
+      order: this.props.tileData.order,
+    });
   };
 
   render() {
@@ -50,17 +69,22 @@ class Tile extends React.Component {
       <Input
         autoFocus
         type="text"
-        value={this.state.description}
+        value={this.state.name}
         onBlur={this.onLostFocus}
         onChange={this.onChange}
         onKeyUp={this.onKeyUp}
       />
     ) : (
-      this.state.description
+      this.state.name
     );
 
     return <TileDiv onClick={this.onClick}>{display}</TileDiv>;
   }
 }
+
+Tile.propTypes = {
+  tileData: PropTypes.object,
+  onEditionCompleted: PropTypes.func,
+};
 
 export default Tile;
