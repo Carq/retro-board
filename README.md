@@ -27,7 +27,7 @@ npm start
 
 ### How to run
 
-In main `server` folder:
+In `server` folder:
 
 ```
 npm install
