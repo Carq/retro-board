@@ -88,13 +88,11 @@ class BoardHeader extends React.Component {
           }
         </HeaderChildDiv>
         <HeaderChildDiv>
-          {this.state.description && (
-            <EditableText
-              text={this.state.description}
-              placeholder="No desciption"
-              onTextConfim={this.handleDescriptionConfirm}
-            />
-          )}
+          <EditableText
+            text={this.state.description}
+            placeholder="No desciption"
+            onTextConfim={this.handleDescriptionConfirm}
+          />
         </HeaderChildDiv>
       </HeaderDiv>
     );

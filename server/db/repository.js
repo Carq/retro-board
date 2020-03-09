@@ -23,7 +23,7 @@ var repository = new (class Repository {
           console.error(err.message);
           reject(err.message);
         } else {
-          resolve(row.title);
+          resolve(row && row.title);
         }
       });
     });
@@ -37,7 +37,7 @@ var repository = new (class Repository {
           console.error(err.message);
           reject(err.message);
         } else {
-          resolve(row.description);
+          resolve(row && row.description);
         }
       });
     });
